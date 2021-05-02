@@ -1,0 +1,23 @@
+version: '3.3'
+services: 
+    api:
+        container_name: 'api'
+        build: './'
+        ports: 
+            - '1948:1948'
+        depends_on: 
+            - 'mongo'
+        networks: 
+            - routertest
+        env_file: : 
+            - .env: 
+    mongo:
+        image: 'mongo:latest'
+        container_name: 'mongo'
+        ports:
+            - '27017:27017'
+        networks: 
+            - routertest
+networks: 
+    routertest:
+        driver: bridge
